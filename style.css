@@ -1,0 +1,610 @@
+/* 
+   Kento's Documentation Portfolio v2
+   Theme: Multi-Column, Color-Coded, Resume-Integrated
+*/
+
+:root {
+    /* Global Basics */
+    --bg-paper: #ffffff;
+    --bg-sidebar: #f9f9f9;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-light: #eeeeee;
+
+    /* Fonts */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* SECTION THEMES (Scoped Variables) */
+    
+    /* 01 About: Navy & Orange */
+    --theme-about-primary: #11224E;
+    --theme-about-accent: #F87B1B;
+    
+    /* 02 Academic: Red & White */
+    --theme-academic-primary: #CC0000;
+    --theme-academic-accent: #ffffff; /* Contrast text */
+    
+    /* 03 Experience: Green */
+    --theme-exp-primary: #2E8B57;
+    --theme-exp-bg: #E8F5E9;
+    
+    /* 04 Study Abroad: Purple */
+    --theme-study-primary: #8E44AD;
+    --theme-study-bg: #F5EEF8; 
+    
+    /* 05 Notes: Yellow */
+    --theme-notes-primary: #F1C40F;
+    --theme-notes-dark: #B7950B;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-main);
+    background-color: var(--bg-paper);
+    line-height: 1.6;
+}
+
+/* =========================================
+   Layout Grid
+   ========================================= */
+.doc-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+}
+
+/* =========================================
+   Left Column: Sticky Navigation
+   ========================================= */
+.sidebar {
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-light);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+}
+
+.logo a {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-main);
+    line-height: 1.1;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+.nav-links { list-style: none; flex-grow: 1; }
+
+.nav-link {
+    display: block;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.nav-link:hover { color: var(--text-main); }
+
+/* Sub Links styling */
+.sub-link-item {
+    margin-left: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.sub-link {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #999;
+}
+
+.sub-link:hover { color: var(--text-main); }
+
+.nav-footer {
+    border-top: 1px solid var(--border-light);
+    padding-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   Right Column: Content Area
+   ========================================= */
+.content-area {
+    padding: 4rem 8%;
+    max-width: 1400px;
+}
+
+.doc-section {
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative; /* For watermark positioning */
+    background: #fff;
+}
+
+/* =========================================
+   Accordion Styling
+   ========================================= */
+details > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: #fff;
+    transition: all 0.2s ease-in-out;
+    border-radius: 4px; /* Optional rounded corners */
+}
+
+details > summary::-webkit-details-marker { display: none; }
+
+.accordion-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: inherit; /* Inherit from summary */
+}
+
+.icon-toggle {
+    font-size: 2rem;
+    font-weight: 300;
+    transition: transform 0.3s;
+    color: inherit; /* Inherit from summary */
+}
+
+details[open] .icon-toggle { transform: rotate(45deg); }
+
+/* --- Theme Specific Accordion Interactions --- */
+
+/* 01 About: Navy */
+.theme-about details > summary:hover,
+.theme-about details[open] > summary {
+    background-color: var(--theme-about-primary);
+    color: #ffffff !important;
+}
+.theme-about .accordion-title, .theme-about .icon-toggle { transition: color 0.2s; }
+
+/* 02 Academic: Red */
+.theme-academic details > summary:hover,
+.theme-academic details[open] > summary {
+    background-color: var(--theme-academic-primary);
+    color: #ffffff !important;
+}
+
+/* 03 Experience: Green */
+.theme-experience details > summary:hover,
+.theme-experience details[open] > summary {
+    background-color: var(--theme-exp-primary);
+    color: #ffffff !important;
+}
+
+/* 04 Study Abroad: Purple */
+.theme-study details > summary:hover,
+.theme-study details[open] > summary {
+    background-color: var(--theme-study-primary);
+    color: #ffffff !important;
+}
+
+/* 05 Notes: Yellow */
+/* Note: Yellow background with white text might have low contrast, but requested by user */
+.theme-notes details > summary:hover,
+.theme-notes details[open] > summary {
+    background-color: var(--theme-notes-primary);
+    color: #ffffff !important;
+}
+
+/* Reset border on open since we have full background */
+details[open] { border-left: none !important; }
+
+.accordion-content {
+    padding: 2rem 2rem 2rem 2rem; /* Increased top padding to 2rem */
+    position: relative; /* For watermark containment */
+    animation: fadeIn 0.4s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between contents */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   Watermark Background
+   ========================================= */
+.bg-watermark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1; /* Low opacity as requested */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none; /* Let clicks pass through */
+    z-index: 0;
+}
+
+/* Ensure content sits above watermark */
+.content-wrapper, .col-2-grid, .col-3-grid, .flex-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================
+   Section Specific Themes & Layouts
+   ========================================= */
+
+/* --- 01 About Me (Navy & Orange) --- */
+/* --- 01 About Me (Navy & Orange) --- */
+/* --- 01 About Me (Navy & Orange) --- */
+.theme-about .accordion-title { color: var(--theme-about-primary); }
+.theme-about details > summary:hover .accordion-title,
+.theme-about details[open] > summary .accordion-title {
+    color: #ffffff !important;
+}
+/* Border around content when open */
+.theme-about details[open] .accordion-content {
+    border: 2px solid var(--theme-about-primary);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+/* Removed old border-left on details */
+
+.content-wrapper { display: flex; flex-direction: column; gap: 2rem; }
+
+.sub-block h3 {
+    margin-bottom: 1rem;
+    color: var(--theme-about-primary);
+    border-bottom: 2px solid var(--theme-about-accent);
+    display: inline-block;
+    padding-bottom: 0.3rem;
+    font-family: var(--font-heading);
+}
+
+/* Intro Background with Orange Opacity */
+#intro, #hobby, #Current {
+    background-color: rgba(248, 123, 27, 0.1); /* Orange #F87B1B with opacity */
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(248, 123, 27, 0.3);
+}
+
+.profile-header { display: flex; gap: 2rem; align-items: start; }
+.profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--theme-about-primary); }
+.placeholder-box {
+    background: #f0f0f0; border: 2px dashed #ccc; padding: 2rem;
+    text-align: center; color: #888; border-radius: 8px; font-weight: 600;
+}
+
+/* --- 02 Academic (Red & White) --- */
+.theme-academic .accordion-title { color: var(--theme-academic-primary); }
+.theme-academic details > summary:hover .accordion-title,
+.theme-academic details[open] > summary .accordion-title {
+    color: #ffffff !important;
+}
+.theme-academic details[open] .accordion-content {
+    border: 2px solid var(--theme-academic-primary);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+/* --- REVERTED LEGACY STYLE FOR ACADEMIC (High Contrast Fix) --- */
+.academic-legacy-wrapper {
+    background-color: rgba(249, 249, 249, 0.8); /* High Contrast: Light Gray */
+    color: #333333; /* Dark Text */
+    border: 2px solid var(--theme-academic-primary); /* Red Border */
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.uofu-wrapper {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('Main.image/Image5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.legacy-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--theme-academic-primary); /* Red Line */
+    padding-bottom: 2rem;
+}
+
+.legacy-header h3 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--theme-academic-primary); /* Red Text */
+}
+
+.legacy-subtitle { color: #666; font-family: var(--font-body); }
+
+.legacy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.legacy-card {
+    background: #ffffff;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-left: 4px solid var(--theme-academic-primary);
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.legacy-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--theme-academic-primary);
+}
+
+.legacy-highlight { font-size: 0.9rem; color: #888; margin-bottom: 1rem; }
+
+.legacy-card ul { list-style: none; font-size: 0.9rem; }
+
+.legacy-card li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1rem;
+    color: #444;
+}
+
+.legacy-card li::before {
+    content: "•";
+    color: var(--theme-academic-primary);
+    position: absolute;
+    left: 0;
+}
+
+
+/* --- 03 Experience (Green - Stacked) --- */
+/* --- 03 Experience (Green - Stacked) --- */
+.theme-experience .accordion-title { color: var(--theme-exp-primary); }
+.theme-experience details > summary:hover .accordion-title,
+.theme-experience details[open] > summary .accordion-title {
+    color: #ffffff !important;
+}
+.theme-experience details[open] .accordion-content {
+    border: 2px solid var(--theme-exp-primary);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Stacked Experience Layout */
+.experience-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.experience-block h3 {
+    margin-bottom: 1rem;
+    color: var(--theme-exp-primary);
+    border-bottom: 2px solid var(--theme-exp-primary);
+    display: inline-block;
+    padding-bottom: 0.3rem;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+}
+
+.experience-item-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Individual Job Item styling */
+.job-card {
+    background: var(--theme-exp-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--theme-exp-primary);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.job-card h4 {
+    color: #111;
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+    font-family: var(--font-heading);
+}
+
+.job-card .meta {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--theme-exp-primary);
+    margin-bottom: 0.8rem;
+}
+
+.job-card ul {
+    margin-left: 1.2rem;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.job-card li {
+    margin-bottom: 0.4rem;
+}
+
+/* --- 04 Study Abroad (Purple) --- */
+.theme-study .accordion-title { color: var(--theme-study-primary); }
+.theme-study details > summary:hover .accordion-title,
+.theme-study details[open] > summary .accordion-title {
+    color: #ffffff !important;
+}
+.theme-study details[open] .accordion-content {
+    border: 2px solid var(--theme-study-primary);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.theme-study .grid-col h3 { color: var(--theme-study-primary); font-family: var(--font-heading); }
+
+.img-placeholder {
+    width: 100%; height: 200px; background: var(--theme-study-bg);
+    border: 2px dashed var(--theme-study-primary); border-radius: 8px;
+    display: flex; justify-content: center; align-items: center;
+    color: var(--theme-study-primary); font-weight: 600; margin-top: 1rem;
+}
+
+/* --- 05 Notes (Yellow) --- */
+.theme-notes .accordion-title { color: var(--theme-notes-dark); }
+.theme-notes details > summary:hover .accordion-title,
+.theme-notes details[open] > summary .accordion-title {
+    color: #ffffff !important;
+}
+.theme-notes details[open] .accordion-content {
+    border: 2px solid var(--theme-notes-primary);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+}
+
+.download-btn {
+    background: var(--theme-notes-primary);
+    color: #000;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 6px;
+    transition: transform 0.2s;
+}
+.download-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(241, 196, 15, 0.4); }
+
+.social-links { display: flex; gap: 1rem; }
+.social-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+.social-links a:hover { color: #000; text-decoration: underline; }
+
+.comment-box {
+    background: #FFFCF0; /* Light yellow tint */
+    border: 1px solid var(--theme-notes-primary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    flex-grow: 1;
+}
+
+.comment-box h4 { color: var(--theme-notes-dark); margin-bottom: 0.5rem; }
+.comment-box p { font-style: italic; color: #555; }
+
+/* =========================================
+   Responsive Design (Mobile Menu)
+   ========================================= */
+/* =========================================
+   Responsive Design (Mobile Menu)
+   ========================================= */
+.mobile-header {
+    display: none; /* Hidden on desktop */
+}
+
+/* Menu Toggle Styling (now inside header) */
+.menu-toggle {
+    background: transparent;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex; /* Center the icon */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Custom 3-Line Icon (CSS Only) */
+.hamburger-lines {
+    width: 24px;
+    height: 2px;
+    background-color: #000000;
+    position: relative;
+    box-shadow: 0 -8px 0 0 #000000, 0 8px 0 0 #000000;
+}
+
+@media (max-width: 900px) {
+    .doc-layout { grid-template-columns: 1fr; }
+    
+    /* Show Mobile Header */
+    .mobile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        position: sticky;
+        top: 0;
+        z-index: 1002; /* Above Sidebar and Content */
+    }
+
+    .mobile-logo {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-main);
+        line-height: 1.1;
+    }
+
+    /* Update Sidebar for Mobile (Navy Theme) */
+    .sidebar { 
+        height: 100vh; 
+        position: fixed;
+        left: -320px; /* Hide off-screen */
+        top: 0;
+        width: 280px;
+        z-index: 1001; /* Under Header if partial, but usually overlays. User said "shows overlay". Let's slide in under or over? usually over. */
+        /* If header is sticky, sidebar should probably be top: 0 and cover everything or sit below header? */
+        /* Standard drawer covers everything. */
+        /* User said "word would be white color, and background would be Navy". */
+        background-color: var(--theme-about-primary); /* Navy */
+        color: #ffffff;
+        transition: left 0.3s ease-in-out;
+        border-right: none;
+        box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+        padding-top: 7rem; /* Space for if header is visible? Or just padding. */
+    }
+
+    .sidebar.active {
+        left: 0; /* Slide in */
+    }
+
+    /* Sidebar Content Colors on Mobile */
+    .sidebar .logo a { color: #ffffff; }
+    .sidebar .nav-link { color: rgba(255,255,255,0.8); }
+    .sidebar .nav-link:hover { color: #ffffff; }
+    .sidebar .sub-link { color: rgba(255,255,255,0.5); }
+    .sidebar .sub-link:hover { color: #ffffff; }
+    .sidebar .nav-footer { border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); }
+
+    .col-2-grid, .col-3-grid { grid-template-columns: 1fr; }
+    
+    .profile-header { flex-direction: column; align-items: center; text-align: center; }
+    
+    .content-area { padding: 2rem 1.5rem; } /* Reduced top padding as header takes space */
+}
