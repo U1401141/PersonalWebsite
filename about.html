@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kento Nohara | About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="about.html">Kento's Website</a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <!-- About (Implicit via Logo, but kept if needed or just remove per previous step?) 
+                         Wait, previous step removed About nav. So we only have List now? 
+                         User said "Remove 'Experience' from Header". 
+                         "Update 'List' ... My Hobby & Favorite ... Gallery".
+                         So the nav should be just "List" (renamed potentially?) or kept as "List" with new items.
+                         User said: "Update 'List' Dropdown Behavior... Update dropdown items to: My Hobby & Favorite... Gallery"
+                    -->
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link toggle-btn">
+                            List <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown">
+                            <li><a href="list.html">My Hobby & Favorite</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Nike Style + GSAP Shapes) -->
+    <section class="hero-section hero-nike">
+
+        <!-- MASK LAYER: Reveals Colors (Mix-Blend-Mode) -->
+        <!-- Only 'I am Kento' is visible here (Black acts as window), others hidden to preserve spacing -->
+        <div class="hero-typography-container content">
+            <h1 class="hero-main-text"><span id="hero-rotating-text">Lucky</span></h1>
+        </div>
+    </section>
+
+    <div class="doc-layout">
+        
+        <!-- MAIN CONTENT AREA -->
+        <main class="content-area">
+
+            <!-- 01 ABOUT ME -->
+            <section id="about" class="doc-section theme-about">
+                <div class="section-content" id="about-me-section">
+                    <h2 class="section-title">About Me</h2>
+                    
+                    <div class="content-wrapper">
+                        <!-- Block A: Intro -->
+                        <div id="intro" class="sub-block">
+                            <div class="profile-header">
+                                <div class="profile-intro">
+                                    <h3>Hello, I am Kento Nohara</h3>
+                                    <p> Thank you for visiting my website! I am working hard every day to become a researcher in the future.
+                                    <br> My fields of interest include Predictive JITAI, Human-Computer Interaction, Human Factors, andError Prevention.
+                                    <br> <span class="cmy-flash">NEW</span>: Future Career: Accepted to Amazon Japan in Operations Management starting 2027.
+                                    <br> For this, I am eager to experience a real-world working environment to better understand the research topics and technological needs of the future.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 02 ACADEMIC -->
+            <section id="academic" class="doc-section theme-academic">
+                <div class="section-content">
+                    <h2 class="section-title">Academic</h2>
+                    
+                    <!-- Wrapper for the Legacy Style Card -->
+                    <div class="academic-legacy-wrapper uofu-wrapper">
+                        <!-- Main Header -->
+                        <div id="uofu" class="legacy-header">
+                            <h3>University of Utah</h3>
+                            <p class="legacy-subtitle">Major: Psychology, Minor: CS | GPA: 3.7</p>
+                        </div>
+
+                        <div class="legacy-grid">
+                            <!-- Card 1 -->
+                            <div class="legacy-card">
+                                <h4>Psychology Major</h4>
+                                <p class="legacy-highlight">College of Social and Behavioral Science</p>
+                                <ul>
+                                    <li>PSY 3010 Research Methods</li>
+                                    <li>PSY 3140 Cognitive NeuroPsych</li>
+                                    <li>PSY 3150 Sensation & Perception</li>
+                                    <li>FCS 3210 Statistics "R"</li>
+                                </ul>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="legacy-card">
+                                <h4>Human Factors Certificate</h4>
+                                <p class="legacy-highlight">College of Social and Behavioral Science</p>
+                                <ul>
+                                    <li>PSY 3171: Human Factors</li>
+                                    <li>PSY 3172: Engineering Psychology and Human Performance</li>
+                                    <li>PSY 4800: Research Experiences</li>
+                                    <li>PSY 4955: Undergraduate Research Projects</li>
+                                </ul>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="legacy-card">
+                                <h4>Computer Science Minor</h4>
+                                <p class="legacy-highlight">Kahlert School of Computing</p>
+                                <ul>
+                                    <li>CS 2420 Algo & Data Structure</li>
+                                    <li>CS 3500 Software Practice</li>
+                                    <li>CS 3540 Design Human Center Sys</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 03 EXPERIENCE -->
+
+            
+            <section id="experience" class="doc-section theme-experience">
+                <div class="section-content">
+                    <h2 class="section-title">Experience</h2>
+                    
+                    <div class="tab-container">
+                        <!-- Tab Menu -->
+                        <div class="tab-menu">
+                            <button class="tab-btn active" onclick="openTab(event, 'tab-research')">Research</button>
+                            <button class="tab-btn" onclick="openTab(event, 'tab-jobs')">Job</button>
+                            <button class="tab-btn" onclick="openTab(event, 'tab-ambassador')">Ambassador</button>
+                        </div>
+
+                        <!-- Tab Content: Research -->
+                        <div id="tab-research" class="tab-content" style="display: block;">
+                            <div class="experience-stack">
+                                <div class="experience-block">
+                                    <div class="experience-item-container">
+                                        <!-- Item 1 -->
+                                        <div class="job-card">
+                                            <h4>VAAST Lab</h4>
+                                            <span class="meta">Research Assistant (Aug 2025 - Present)</span>
+                                            <ul>
+                                                <li>Assisted PhD students with data collection regarding Augmented Reality and Depth Perception.</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item 2 -->
+                                        <div class="job-card">
+                                            <h4>UTX Trax Improvement Research</h4>
+                                            <span class="meta">Group Leader | Project (2025) | PSY 4955</span>
+                                            <ul>
+                                                <li>Led User Experience (UX) improvement research for Salt Lake County transportation.</li>
+                                                <li>Conducted Task Analysis, Data Analysis, and Propose Solusion like new Bus stop design.</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item 3 -->
+                                        <div class="job-card">
+                                            <h4>AI Mental Health Care</h4>
+                                            <span class="meta">Descriptive Study | Project (2023) | PSY 4800</span>
+                                            <ul>
+                                                <li>Read many articles about AI mental health care.</li>
+                                                <li>Wrote a descriptive study about AI mental health care.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content: Jobs -->
+                        <div id="tab-jobs" class="tab-content">
+                            <div class="experience-stack">
+                                <div class="experience-block">
+                                    <div class="experience-item-container">
+                                        <!-- Item 1 -->
+                                        <div class="job-card">
+                                            <h4>Amazon Japan</h4>
+                                            <span class="meta">Operation Manager Intern (Sept 2025) -- Internship</span>
+                                            <ul>
+                                                <li>Analyzed survey results to identify operational challenges.</li>
+                                                <li>Developed logical improvement proposals and presented them to the manager.</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item 2 -->
+                                        <div class="job-card">
+                                            <h4>Mentor Learning Assistant (LA)</h4>
+                                            <span class="meta">SCI 5050 Program (Aug 2025 - Present) -- Part time</span>
+                                            <ul>
+                                                <li>Mentored new LAs across multiple science disciplines on teaching best practices and student engagement.</li>
+                                                <li>Provided feedback and support to enhance their teaching skills.</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item 3 -->
+                                        <div class="job-card">
+                                            <h4>RO1 Marketing LLC</h4>
+                                            <span class="meta">Marketing & Interpreter (July - Aug 2025) -- Internship</span>
+                                            <ul>
+                                                <li>Interpreter for Kikuchi Seiki at Small Satellite Conference.</li>
+                                                <li>Conducted market positioning analysis on companies.</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item 4 -->
+                                        <div class="job-card">
+                                            <h4>Global Career Internship</h4>
+                                            <span class="meta">Event Planner & Marketing (June - Aug 2025) -- Internship</span>
+                                            <ul>
+                                                <li>Organized events connecting Japanese students with distinguished companies in Japan.</li>
+                                                <li>Facilitated carrer events and managed over 100 applicants.</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item 5 -->
+                                        <div class="job-card">
+                                            <h4>Lassonde Studios</h4>
+                                            <span class="meta">Hospitality Coordinator (May 2025 - Present) -- Part time</span>
+                                            <ul>
+                                                <li>Managed resident community by working Front Desk.</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item 6 -->
+                                        <div class="job-card">
+                                            <h4>Math 1210 Learning Assistant</h4>
+                                            <span class="meta">University of Utah (Jan - May 2025) -- Part time</span>
+                                            <ul>
+                                                <li>Led lab sessions, created teaching materials, and facilitated calculus discussions.</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item 7 -->
+                                        <div class="job-card">
+                                            <h4>Student Lounge Manager</h4>
+                                            <span class="meta">Utah Asia Campus, South Korea (Aug 2023 - May 2024) -- Part time</span>
+                                            <ul>
+                                                <li>Managed student space and organized cultural exchange events.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content: Ambassador -->
+                        <div id="tab-ambassador" class="tab-content">
+                            <div class="experience-stack">
+                                <div class="experience-block">
+                                    <div class="experience-item-container">
+                                        <!-- Item 1 -->
+                                        <div class="job-card">
+                                            <h4>Marriott Institute</h4>
+                                            <span class="meta">Hospitality Ambassador (Aug 2025 - May 2026)</span>
+                                            <ul>
+                                                <li>Selected for Marriott family-sponsored leadership program to explain hospitality and future institute.</li>
+                                                <li>Participated in Ritz-Carlton certification workshops at Denver, Colorado.</li>
+                                                <li>Facilitated Hospitality Rising Summit, Connecting the Institute with other company like JPMorgan Chase</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item 2 -->
+                                        <div class="job-card">
+                                            <h4>Adobe Student Ambassador</h4>
+                                            <span class="meta">Event Coordinator (Aug 2025 - May 2026)</span>
+                                            <ul>
+                                                <li>Organized creative workshops and events.</li>
+                                                <li>Holiday card making events with other members of Adobe Ambassador.</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Item 3 -->
+                                        <div class="job-card">
+                                            <h4>Utah Japanese Community</h4>
+                                            <span class="meta">Vice President (Aug 2024 - Dec 2025)</span>
+                                            <ul>
+                                                <li>Founded community, organized Sports Day and Utah Nihon Festival volunteering.</li>
+                                                <li>There are around 80 members in the group.</li>
+                                                <li>Organized events like Japanese language table, Workshop with JP Morgan Chase, and so forth.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- GLOBAL FOOTER (Formerly Notes) -->
+    <footer id="notes" class="site-footer theme-contact">
+        <div class="footer-content">
+            <h2 class="footer-title">Contact/Notes</h2>
+            
+            <div class="flex-container">
+                <div class="footer-group">
+                    <a href="#" class="download-btn">Download Resume</a>
+
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/kento-nohara-04588b327/"
+                            target="_blank">LinkedIn</a>
+                        <a href="https://github.com/U1401141?tab=repositories" target="_blank">GitHub</a>
+                        <a href="mailto:u1401141@utah.edu">Email</a>
+                    </div>
+                </div>
+
+                <div class="comment-box">
+                    <h4>Personal Message</h4>
+                    <p>"This Website is a living document of my journey!!! I made it with fun :-) Thank you for visiting!"
+                    <br>*Updated on Dec 2025
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

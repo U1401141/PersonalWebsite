@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kento Nohara | Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="about.html">Kento's Website</a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active-page">
+                        <a href="javascript:void(0)" class="nav-link toggle-btn">
+                            List <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown">
+                            <li><a href="list.html">My Hobby & Favorite</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <!-- 
+        CUSTOMIZABLE HERO SECTION 
+        To change the background image, update the inline style: style="background-image: url('path/to/image.jpg');"
+        To change the overlay color/opacity, modify the background-color or add an overlay div.
+    -->
+    <section class="hero-section theme-gallery" style="background-image: linear-gradient(rgba(142, 68, 173, 0.1), rgba(142, 68, 173, 0.1));">
+        <div class="hero-content">
+            <h1 class="section-title" style="font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 1rem; white-space: nowrap;">Gallery</h1>
+            <p style="font-size: 1.2rem; color: var(--text-muted);">A collection of moments and memories with my comments!!</p>
+        </div>
+    </section>
+
+    <div class="doc-layout">
+        
+        <!-- MAIN CONTENT AREA -->
+        <main class="content-area">
+
+            <!-- GALLERY SECTION -->
+            <section id="gallery" class="doc-section theme-gallery">
+                <div class="section-content">
+                    <!-- The grid will be populated by script.js -->
+                    <div id="gallery-grid" class="gallery-grid">
+                        <!-- JS renders items here -->
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- GLOBAL FOOTER -->
+    <footer id="notes" class="site-footer theme-contact">
+        <div class="footer-content">
+            <h2 class="footer-title">Contact/Notes</h2>
+            
+            <div class="flex-container">
+                <div class="footer-group">
+                    <a href="#" class="download-btn">Download Resume</a>
+
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/kento-nohara-04588b327/"
+                            target="_blank">LinkedIn</a>
+                        <a href="https://github.com/U1401141?tab=repositories" target="_blank">GitHub</a>
+                        <a href="mailto:u1401141@utah.edu">Email</a>
+                    </div>
+                </div>
+
+                <div class="comment-box">
+                    <h4>Personal Message</h4>
+                    <p>"This Website is a living document of my journey!!! I made it with fun :-) Thank you for visiting!"
+                        <br>*Updated on Dec 2025
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="lightbox-modal">
+        <span class="close-btn">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+            <p id="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

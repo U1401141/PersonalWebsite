@@ -1,12 +1,12 @@
 /* 
-   Kento's Documentation Portfolio v2
-   Theme: Multi-Column, Color-Coded, Resume-Integrated
+   Kento's Minimalist Portfolio v4.1
+   Theme: Whitespace-driven, Typography-focused, Subtle Accents
+   Update: Global Footer Added
 */
 
 :root {
     /* Global Basics */
     --bg-paper: #ffffff;
-    --bg-sidebar: #f9f9f9;
     --text-main: #333333;
     --text-muted: #666666;
     --border-light: #eeeeee;
@@ -15,596 +15,926 @@
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    /* SECTION THEMES (Scoped Variables) */
-    
-    /* 01 About: Navy & Orange */
-    --theme-about-primary: #11224E;
-    --theme-about-accent: #F87B1B;
-    
-    /* 02 Academic: Red & White */
-    --theme-academic-primary: #CC0000;
-    --theme-academic-accent: #ffffff; /* Contrast text */
-    
-    /* 03 Experience: Green */
-    --theme-exp-primary: #2E8B57;
-    --theme-exp-bg: #E8F5E9;
-    
-    /* 04 Study Abroad: Purple */
-    --theme-study-primary: #8E44AD;
-    --theme-study-bg: #F5EEF8; 
-    
-    /* 05 Notes: Yellow */
-    --theme-notes-primary: #F1C40F;
-    --theme-notes-dark: #B7950B;
+    /* SECTION THEMES (Accents Only) */
+    --theme-about-accent: Blue; /* Navy Blue */
+    --theme-academic-accent: #CC0000; /* Red */
+    --theme-exp-accent: #2E8B57; /* Green */
+    --theme-hobby-accent: #F1C40F; /* Yellow */
+    --theme-fav-accent: #F39C12; /* Orange - using a distinct orange */
+    --theme-gallery-accent: #8E44AD; /* Purple */
+    --theme-notes-accent: #95A5A6; /* Gray/Contact default if needed, or keep Yellow? Prompt said "Contact: Gray" in summary but prompt text says "My Hobby: Yellow", "My Favorite: Orange". Let's stick to prompt text specific list: navy, red, green, yellow, orange, purple. Contact/Notes was mentioned as Gray in summary 8520... but prompt text 2 says "About Me: Navy... Gallery: Purple". I will follow Prompt 2 list. */
 }
 
+/* Hero Section (100vh) */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 2rem;
+    color: var(--text-main);
+    /* Default background if image is missing */
+    background-color: #f8f9fa;
+}
+
+/* =========================================
+   Hero Section (Minimalist & Massive)
+   ========================================= */
+.hero-nike {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /* Pure White */
+    padding: 2rem;
+    position: relative;
+    overflow: hidden; /* Contain the shapes */
+    /* Ensure no background image overrides */
+    background-image: none !important;
+}
+
+/* Content Wrapper (Foreground - Layer 1) */
+.hero-typography-container.content {
+    /* Merging typical container styles with masking logic */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+    /* Masking Magic */
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    
+    /* Standard Layering: Transparent background, Text on top */
+    background-color: transparent; 
+    z-index: 10; /* Foreground Layer */
+}
+
+/* Static Overlay (Layer 2) - Still needed if we used split layout, 
+   but with transparent background on content, we might not strictly need proper split 
+   if we aren't doing the cutout. But keeping z-index high ensures visibility. */
+.hero-typography-container.static-overlay {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    /* Transparent Background so Layer 1 shows through */
+    background-color: transparent; 
+    z-index: 2; /* Topmost */
+    pointer-events: none; /* Let clicks pass through to 'I am Kento' if needed */
+}
+
+
+.hero-main-text {
+    font-family: var(--font-heading); /* Outfit */
+    font-size: 14vw; /* Massive responsive size (Increased per request) */
+    font-weight: 800; /* Extra Bold */
+    color: #000000; /* Static text Black */
+    line-height: 1;
+    margin: 1rem 0;
+    /* text-transform: uppercase; Removed per request */
+    letter-spacing: -2px; /* Tight minimalist tracking */
+    white-space: nowrap; /* Ensure single line */
+}
+
+.hero-sub-text {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000000;
+    /* text-transform: uppercase; Removed per request */
+    letter-spacing: 4px; /* Wide tracking for contrast */
+}
+
+/* Rotating Span Default State */
+#hero-rotating-text {
+    display: inline-block;
+    /* Color will be handled by JS, default to black if JS fails */
+    color: #000000; 
+}
+
+/* Ensure fixed header doesn't overlap or hero compensates. 
+   Option A: Hero is top-level, body has padding-top. 
+   If we want full 100vh distinct from header, we might remove body padding or transparent header?
+   Current layout has .doc-layout { padding-top: 50px; }
+   We want Hero to be 100vh. If we put it inside .doc-layout, it will be 100vh - 50px effectively visually if we want 'screen' feel.
+   Or we make Hero full screen and header overlays it? The prompt says "Before the main content... insert a full-screen Intro/Hero".
+   Let's just make .hero-section standard.
+*/
+
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Offset for sticky header */
+}
 
 body {
     font-family: var(--font-body);
     color: var(--text-main);
     background-color: var(--bg-paper);
     line-height: 1.6;
-}
-
-/* =========================================
-   Layout Grid
-   ========================================= */
-.doc-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
 
 /* =========================================
-   Left Column: Sticky Navigation
+   Top Header & Navigation (Accordion Style)
    ========================================= */
-.sidebar {
-    background-color: var(--bg-sidebar);
-    border-right: 1px solid var(--border-light);
-    height: 100vh;
-    position: sticky;
+.site-header {
+    position: fixed;
     top: 0;
-    padding: 3rem 2rem;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid var(--border-light);
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    overflow-y: auto;
+    align-items: center;
 }
 
 .logo a {
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
     text-decoration: none;
     color: var(--text-main);
-    line-height: 1.1;
-    display: block;
-    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
 }
 
-.nav-links { list-style: none; flex-grow: 1; }
+.main-nav {
+    display: flex;
+    align-items: center;
+}
 
-.nav-link {
-    display: block;
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-item {
+    position: relative;
+    cursor: pointer; /* Indicate interaction */
+}
+
+/* Toggle Button Styling */
+.toggle-btn {
     text-decoration: none;
     color: var(--text-muted);
     font-weight: 500;
+    font-size: 0.95rem;
     padding: 0.5rem 0;
-    font-size: 1rem;
     transition: color 0.2s;
+    font-family: var(--font-heading);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; /* Space between text and arrow */
 }
 
-.nav-link:hover { color: var(--text-main); }
-
-/* Sub Links styling */
-.sub-link-item {
-    margin-left: 1.2rem;
-    margin-bottom: 0.2rem;
+.toggle-btn:hover, 
+.nav-item.active .toggle-btn,
+.nav-item.active-page .toggle-btn /* Highlight active page parent */ {
+    color: var(--text-main);
 }
 
-.sub-link {
+/* Arrow Styling */
+.fa-chevron-down {
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when active */
+.nav-item.active .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Menu (Accordion Pop-up) */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 0.5rem 0;
+    min-width: 180px;
+    text-align: center; /* Center text per request */
+    
+    /* Hidden state */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    
+    list-style: none;
+    z-index: 1001;
+}
+
+/* Active State (Toggled by JS) */
+.nav-item.active .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Right align specific dropdown to prevent overflow */
+.nav-item:last-child .dropdown {
+    left: auto;
+    right: 0;
+    transform: translateY(10px);
+}
+
+.nav-item:last-child.active .dropdown {
+    transform: translateY(0);
+}
+
+.dropdown li a {
+    display: block;
+    padding: 0.6rem 1.5rem;
+    text-decoration: none;
+    color: var(--text-muted);
     font-size: 0.9rem;
-    font-weight: 400;
-    color: #999;
+    transition: background 0.1s, color 0.1s;
 }
 
-.sub-link:hover { color: var(--text-main); }
+.dropdown li a:hover {
+    background: #f9f9f9;
+    color: var(--text-main);
+}
 
-.nav-footer {
-    border-top: 1px solid var(--border-light);
-    padding-top: 1rem;
-    font-size: 0.8rem;
+/* Mobile Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bar {
+    width: 25px;
+    height: 2px;
+    background: var(--text-main);
+    transition: 0.3s;
+}
+
+/* =========================================
+   Main Layout
+   ========================================= */
+.doc-layout {
+    padding-top: 50px; /* Space for fixed header */
+    flex: 1; /* Push footer down */
+}
+
+.content-area {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+}
+
+/* =========================================
+   Section Styling
+   ========================================= */
+.doc-section {
+    margin-bottom: 3rem; /* Large whitespace between sections */
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+    position: relative;
+    display: inline-block;
+}
+
+/* Decorative line under section titles based on theme */
+.theme-about .section-title::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: var(--theme-about-accent); }
+.theme-academic .section-title::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: var(--theme-academic-accent); }
+.theme-experience .section-title::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: var(--theme-exp-accent); }
+.theme-hobby .section-title::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: var(--theme-hobby-accent); }
+.theme-fav .section-title::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: var(--theme-fav-accent); }
+.theme-gallery .section-title::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: var(--theme-gallery-accent); }
+
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.sub-block h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+}
+
+.sub-block h4 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 2rem; /* Add spacing before new h4 items */
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+/* Special Case: First item shouldn't have top margin */
+.sub-block h4:first-of-type {
+    margin-top: 0;
+} 
+
+.sub-block p {
+    margin-bottom: 0.8rem;
     color: var(--text-muted);
 }
 
 /* =========================================
-   Right Column: Content Area
+   Block Styles
    ========================================= */
-.content-area {
-    padding: 4rem 8%;
-    max-width: 1400px;
-}
 
-.doc-section {
-    margin-bottom: 2rem;
-    border: 1px solid var(--border-light);
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative; /* For watermark positioning */
-    background: #fff;
-}
-
-/* =========================================
-   Accordion Styling
-   ========================================= */
-details > summary {
-    list-style: none;
-    cursor: pointer;
+/* Profile Header */
+.profile-header {
     display: flex;
-    justify-content: space-between;
+    gap: 3rem;
     align-items: center;
-    padding: 1.5rem 2rem;
-    background: #fff;
-    transition: all 0.2s ease-in-out;
-    border-radius: 4px; /* Optional rounded corners */
 }
 
-details > summary::-webkit-details-marker { display: none; }
-
-.accordion-title {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: inherit; /* Inherit from summary */
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(100%); /* B&W for minimalism */
+    transition: filter 0.3s;
 }
 
-.icon-toggle {
-    font-size: 2rem;
-    font-weight: 300;
-    transition: transform 0.3s;
-    color: inherit; /* Inherit from summary */
+.profile-img:hover {
+    filter: grayscale(0%); /* Color on hover */
 }
 
-details[open] .icon-toggle { transform: rotate(45deg); }
-
-/* --- Theme Specific Accordion Interactions --- */
-
-/* 01 About: Navy */
-.theme-about details > summary:hover,
-.theme-about details[open] > summary {
-    background-color: var(--theme-about-primary);
-    color: #ffffff !important;
-}
-.theme-about .accordion-title, .theme-about .icon-toggle { transition: color 0.2s; }
-
-/* 02 Academic: Red */
-.theme-academic details > summary:hover,
-.theme-academic details[open] > summary {
-    background-color: var(--theme-academic-primary);
-    color: #ffffff !important;
+.profile-intro h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
 }
 
-/* 03 Experience: Green */
-.theme-experience details > summary:hover,
-.theme-experience details[open] > summary {
-    background-color: var(--theme-exp-primary);
-    color: #ffffff !important;
+/* Academic Legacy Wrapper (Preserved but Cleaned) */
+.academic-legacy-wrapper {
+    padding: 2rem 0;
 }
 
-/* 04 Study Abroad: Purple */
-.theme-study details > summary:hover,
-.theme-study details[open] > summary {
-    background-color: var(--theme-study-primary);
-    color: #ffffff !important;
+/* Special styling for University of Utah section with background image */
+.uofu-wrapper {
+    position: relative;
+    padding: 3rem 2rem; /* Add padding for internal spacing */
+    border-radius: 8px; /* Optional rounded corners */
+    overflow: hidden; /* Ensure overlay and image stay within bounds */
+    background-image: url('./Main.image/Image5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-/* 05 Notes: Yellow */
-/* Note: Yellow background with white text might have low contrast, but requested by user */
-.theme-notes details > summary:hover,
-.theme-notes details[open] > summary {
-    background-color: var(--theme-notes-primary);
-    color: #ffffff !important;
-}
-
-/* Reset border on open since we have full background */
-details[open] { border-left: none !important; }
-
-.accordion-content {
-    padding: 2rem 2rem 2rem 2rem; /* Increased top padding to 2rem */
-    position: relative; /* For watermark containment */
-    animation: fadeIn 0.4s ease-out;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem; /* Space between contents */
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================================
-   Watermark Background
-   ========================================= */
-.bg-watermark {
+/* Overlay to improve readability */
+.uofu-wrapper::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.1; /* Low opacity as requested */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    pointer-events: none; /* Let clicks pass through */
-    z-index: 0;
+    background: rgba(255, 255, 255, 0.6); /* White overlay with high opacity */
+    z-index: 1; /* Place behind content but above image */
 }
 
-/* Ensure content sits above watermark */
-.content-wrapper, .col-2-grid, .col-3-grid, .flex-container {
+/* Ensure content is above the overlay */
+.uofu-wrapper > * {
     position: relative;
-    z-index: 1;
-}
-
-/* =========================================
-   Section Specific Themes & Layouts
-   ========================================= */
-
-/* --- 01 About Me (Navy & Orange) --- */
-/* --- 01 About Me (Navy & Orange) --- */
-/* --- 01 About Me (Navy & Orange) --- */
-.theme-about .accordion-title { color: var(--theme-about-primary); }
-.theme-about details > summary:hover .accordion-title,
-.theme-about details[open] > summary .accordion-title {
-    color: #ffffff !important;
-}
-/* Border around content when open */
-.theme-about details[open] .accordion-content {
-    border: 2px solid var(--theme-about-primary);
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-}
-/* Removed old border-left on details */
-
-.content-wrapper { display: flex; flex-direction: column; gap: 2rem; }
-
-.sub-block h3 {
-    margin-bottom: 1rem;
-    color: var(--theme-about-primary);
-    border-bottom: 2px solid var(--theme-about-accent);
-    display: inline-block;
-    padding-bottom: 0.3rem;
-    font-family: var(--font-heading);
-}
-
-/* Intro Background with Orange Opacity */
-#intro, #hobby, #Current {
-    background-color: rgba(248, 123, 27, 0.1); /* Orange #F87B1B with opacity */
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid rgba(248, 123, 27, 0.3);
-}
-
-.profile-header { display: flex; gap: 2rem; align-items: start; }
-.profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--theme-about-primary); }
-.placeholder-box {
-    background: #f0f0f0; border: 2px dashed #ccc; padding: 2rem;
-    text-align: center; color: #888; border-radius: 8px; font-weight: 600;
-}
-
-/* --- 02 Academic (Red & White) --- */
-.theme-academic .accordion-title { color: var(--theme-academic-primary); }
-.theme-academic details > summary:hover .accordion-title,
-.theme-academic details[open] > summary .accordion-title {
-    color: #ffffff !important;
-}
-.theme-academic details[open] .accordion-content {
-    border: 2px solid var(--theme-academic-primary);
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-}
-
-/* --- REVERTED LEGACY STYLE FOR ACADEMIC (High Contrast Fix) --- */
-.academic-legacy-wrapper {
-    background-color: rgba(249, 249, 249, 0.8); /* High Contrast: Light Gray */
-    color: #333333; /* Dark Text */
-    border: 2px solid var(--theme-academic-primary); /* Red Border */
-    padding: 3rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-.uofu-wrapper {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('Main.image/Image5.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    z-index: 2;
 }
 
 .legacy-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    border-bottom: 2px solid var(--theme-academic-primary); /* Red Line */
-    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-left: 3px solid var(--theme-academic-accent);
+    padding-left: 1rem;
 }
 
 .legacy-header h3 {
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--theme-academic-primary); /* Red Text */
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+    color: var(--text-main);
 }
 
-.legacy-subtitle { color: #666; font-family: var(--font-body); }
+.legacy-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
 
 .legacy-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
 }
 
 .legacy-card {
-    background: #ffffff;
+    background: #fff;
+    border: 1px solid var(--theme-academic-accent);
     padding: 1.5rem;
-    border: 1px solid #ddd;
-    border-left: 4px solid var(--theme-academic-primary);
     border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .legacy-card h4 {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: var(--theme-academic-primary);
+    color: var(--theme-academic-accent);
 }
 
-.legacy-highlight { font-size: 0.9rem; color: #888; margin-bottom: 1rem; }
+.legacy-highlight {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 1rem;
+}
 
-.legacy-card ul { list-style: none; font-size: 0.9rem; }
+.legacy-card ul {
+    list-style: none;
+    font-size: 0.9rem;
+}
 
 .legacy-card li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     position: relative;
     padding-left: 1rem;
-    color: #444;
 }
 
 .legacy-card li::before {
     content: "•";
-    color: var(--theme-academic-primary);
+    color: var(--theme-academic-accent);
     position: absolute;
     left: 0;
 }
 
-
-/* --- 03 Experience (Green - Stacked) --- */
-/* --- 03 Experience (Green - Stacked) --- */
-.theme-experience .accordion-title { color: var(--theme-exp-primary); }
-.theme-experience details > summary:hover .accordion-title,
-.theme-experience details[open] > summary .accordion-title {
-    color: #ffffff !important;
-}
-.theme-experience details[open] .accordion-content {
-    border: 2px solid var(--theme-exp-primary);
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-}
-
-/* Stacked Experience Layout */
+/* Experience Stack */
 .experience-stack {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 4rem;
 }
 
 .experience-block h3 {
-    margin-bottom: 1rem;
-    color: var(--theme-exp-primary);
-    border-bottom: 2px solid var(--theme-exp-primary);
+    margin-bottom: 2rem;
+    font-size: 1.25rem;
+    color: var(--theme-exp-accent);
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.5rem;
     display: inline-block;
-    padding-bottom: 0.3rem;
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
 }
 
 .experience-item-container {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
+    gap: 2rem;
 }
 
-/* Individual Job Item styling */
 .job-card {
-    background: var(--theme-exp-bg);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border-left: 4px solid var(--theme-exp-primary);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-left: 2px solid var(--border-light);
+    padding-left: 1.5rem;
+    transition: border-color 0.3s;
+}
+
+.job-card:hover {
+    border-left-color: var(--theme-exp-accent);
 }
 
 .job-card h4 {
-    color: #111;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 0.2rem;
-    font-family: var(--font-heading);
+    color: var(--text-main);
 }
 
 .job-card .meta {
     display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--theme-exp-primary);
+    font-size: 0.85rem;
+    color: #999;
     margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .job-card ul {
-    margin-left: 1.2rem;
+    list-style: none;
+    color: var(--text-muted);
     font-size: 0.95rem;
-    color: #444;
 }
 
-.job-card li {
-    margin-bottom: 0.4rem;
+.job-card li { margin-bottom: 0.3rem; }
+
+/* Grid Gallery */
+.col-2-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
-/* --- 04 Study Abroad (Purple) --- */
-.theme-study .accordion-title { color: var(--theme-study-primary); }
-.theme-study details > summary:hover .accordion-title,
-.theme-study details[open] > summary .accordion-title {
-    color: #ffffff !important;
+.grid-col h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--theme-study-accent);
 }
-.theme-study details[open] .accordion-content {
-    border: 2px solid var(--theme-study-primary);
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-}
-
-.theme-study .grid-col h3 { color: var(--theme-study-primary); font-family: var(--font-heading); }
 
 .img-placeholder {
-    width: 100%; height: 200px; background: var(--theme-study-bg);
-    border: 2px dashed var(--theme-study-primary); border-radius: 8px;
-    display: flex; justify-content: center; align-items: center;
-    color: var(--theme-study-primary); font-weight: 600; margin-top: 1rem;
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #f9f9f9;
+    border: 1px dashed var(--border-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-radius: 4px;
 }
 
-/* --- 05 Notes (Yellow) --- */
-.theme-notes .accordion-title { color: var(--theme-notes-dark); }
-.theme-notes details > summary:hover .accordion-title,
-.theme-notes details[open] > summary .accordion-title {
-    color: #ffffff !important;
+/* =========================================
+   Tabbed UI Styling
+   ========================================= */
+.tab-container {
+    width: 100%;
 }
-.theme-notes details[open] .accordion-content {
-    border: 2px solid var(--theme-notes-primary);
-    border-top: none;
-    border-radius: 0 0 8px 8px;
+
+.tab-menu {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 2px solid var(--border-light);
+    margin-bottom: 2rem;
+    overflow-x: auto; /* Scroll on mobile if needed */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.tab-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px; /* Pull down to overlap border */
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    color: var(--text-main);
+    background-color: #f9f9f9;
+}
+
+.tab-btn.active {
+    color: var(--text-main);
+    font-weight: 700;
+    border-bottom-color: currentColor; /* Inherits text color */
+}
+
+/* Theme-specific active tab colors */
+.theme-experience .tab-btn.active { color: var(--theme-exp-accent); border-bottom-color: var(--theme-exp-accent); }
+.theme-about .tab-btn.active { color: var(--theme-about-accent); border-bottom-color: var(--theme-about-accent); }
+.theme-hobby .tab-btn.active { color: var(--theme-hobby-accent); border-bottom-color: var(--theme-hobby-accent); }
+.theme-fav .tab-btn.active { color: var(--theme-fav-accent); border-bottom-color: var(--theme-fav-accent); }
+.theme-gallery .tab-btn.active { color: var(--theme-gallery-accent); border-bottom-color: var(--theme-gallery-accent); }
+
+
+.tab-content {
+    display: none; /* Hidden by default */
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover Navigation Support */
+@media (min-width: 769px) { /* Desktop only */
+    .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+    
+    /* Hover fix for right aligned item */
+    .nav-item:last-child:hover .dropdown {
+        transform: translateY(0);
+    }
+}
+.site-footer {
+    background: #fafafa;
+    border-top: 1px solid var(--border-light);
+    padding: 4rem 2rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+    position: relative;
+    display: inline-block;
+}
+
+/* Footer Accent based on Global Theme (Yellow) */
+.footer-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
+    background: var(--theme-notes-accent);
 }
 
 .flex-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 4rem;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Adjust for mobile */
+}
+
+.footer-group {
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
-    align-items: center;
+    min-width: 250px;
 }
 
 .download-btn {
-    background: var(--theme-notes-primary);
-    color: #000;
-    padding: 0.8rem 1.5rem;
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border: 1px solid var(--theme-notes-accent);
+    color: var(--theme-notes-accent); /* Colored text */
     text-decoration: none;
-    font-weight: 700;
-    border-radius: 6px;
-    transition: transform 0.2s;
+    font-weight: 500;
+    border-radius: 50px;
+    transition: all 0.2s;
 }
-.download-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(241, 196, 15, 0.4); }
 
-.social-links { display: flex; gap: 1rem; }
-.social-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
-.social-links a:hover { color: #000; text-decoration: underline; }
+.download-btn:hover {
+    background: var(--theme-notes-accent);
+    color: #fff;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: var(--text-muted);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.social-links a:hover {
+    color: var(--theme-notes-accent);
+}
 
 .comment-box {
-    background: #FFFCF0; /* Light yellow tint */
-    border: 1px solid var(--theme-notes-primary);
+    background: #fff;
+    border-left: 3px solid var(--theme-notes-accent);
     padding: 1.5rem;
-    border-radius: 8px;
-    flex-grow: 1;
+    font-style: italic;
+    color: var(--text-muted);
+    max-width: 600px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
-.comment-box h4 { color: var(--theme-notes-dark); margin-bottom: 0.5rem; }
-.comment-box p { font-style: italic; color: #555; }
+.comment-box h4 {
+    font-style: normal;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 0.5rem;
+}
 
 /* =========================================
-   Responsive Design (Mobile Menu)
+   Responsive Design
    ========================================= */
-/* =========================================
-   Responsive Design (Mobile Menu)
-   ========================================= */
-.mobile-header {
-    display: none; /* Hidden on desktop */
-}
 
-/* Menu Toggle Styling (now inside header) */
-.menu-toggle {
-    background: transparent;
-    color: #000000;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    display: flex; /* Center the icon */
-    align-items: center;
-    justify-content: center;
-}
-
-/* Custom 3-Line Icon (CSS Only) */
-.hamburger-lines {
-    width: 24px;
-    height: 2px;
-    background-color: #000000;
-    position: relative;
-    box-shadow: 0 -8px 0 0 #000000, 0 8px 0 0 #000000;
-}
-
-@media (max-width: 900px) {
-    .doc-layout { grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+    .header-container { padding: 0 1.5rem; }
     
-    /* Show Mobile Header */
-    .mobile-header {
-        display: flex;
-        justify-content: space-between;
+    /* Removed hamburger menu and mobile nav overrides to keep desktop layout per request */
+    .mobile-menu-toggle { display: none; }
+
+    /* Mobile Typography Adjustments */
+    .hero-main-text {
+        font-size: 19vw; /* Larger relative size for impact on small screens */
+    }
+    
+    .hero-sub-text {
+        font-size: 1.1rem; /* Smaller subtext to fit screen width */
+        letter-spacing: 2px; /* Reduced tracking */
+    }
+    .profile-header {
+        flex-direction: column;
         align-items: center;
-        padding: 1rem 1.5rem;
-        background: #fff;
-        border-bottom: 1px solid #eee;
-        position: sticky;
-        top: 0;
-        z-index: 1002; /* Above Sidebar and Content */
+        text-align: center;
     }
-
-    .mobile-logo {
-        font-family: var(--font-heading);
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--text-main);
-        line-height: 1.1;
-    }
-
-    /* Update Sidebar for Mobile (Navy Theme) */
-    .sidebar { 
-        height: 100vh; 
-        position: fixed;
-        left: -320px; /* Hide off-screen */
-        top: 0;
-        width: 280px;
-        z-index: 1001; /* Under Header if partial, but usually overlays. User said "shows overlay". Let's slide in under or over? usually over. */
-        /* If header is sticky, sidebar should probably be top: 0 and cover everything or sit below header? */
-        /* Standard drawer covers everything. */
-        /* User said "word would be white color, and background would be Navy". */
-        background-color: var(--theme-about-primary); /* Navy */
-        color: #ffffff;
-        transition: left 0.3s ease-in-out;
-        border-right: none;
-        box-shadow: 4px 0 10px rgba(0,0,0,0.3);
-        padding-top: 7rem; /* Space for if header is visible? Or just padding. */
-    }
-
-    .sidebar.active {
-        left: 0; /* Slide in */
-    }
-
-    /* Sidebar Content Colors on Mobile */
-    .sidebar .logo a { color: #ffffff; }
-    .sidebar .nav-link { color: rgba(255,255,255,0.8); }
-    .sidebar .nav-link:hover { color: #ffffff; }
-    .sidebar .sub-link { color: rgba(255,255,255,0.5); }
-    .sidebar .sub-link:hover { color: #ffffff; }
-    .sidebar .nav-footer { border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); }
-
-    .col-2-grid, .col-3-grid { grid-template-columns: 1fr; }
     
-    .profile-header { flex-direction: column; align-items: center; text-align: center; }
-    
-    .content-area { padding: 2rem 1.5rem; } /* Reduced top padding as header takes space */
+    .content-area { padding: 1rem 1.5rem 4rem; }
+}
+
+/* =========================================
+   Gallery Grid Styles (New)
+   ========================================= */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Columns per request */
+    gap: 1.5rem; /* Tighter gap for more images */
+    padding: 1rem 0;
+}
+
+/* Tablet/Mobile Responsive: Keep 4 columns essentially standard */
+@media (max-width: 1024px) {
+    .gallery-grid {
+        /* User requested 4 columns even on phone */
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem; /* Smaller gap for mobile */
+    }
+}
+
+/* =========================================
+   Animations
+   ========================================= */
+@keyframes cmy-flash {
+    0% { color: #00FFFF; }   /* Cyan */
+    33% { color: #FF00FF; }  /* Magenta */
+    66% { color: #FFFF00; }  /* Yellow */
+    100% { color: #00FFFF; } /* Cyan */
+}
+
+.cmy-flash {
+    animation: cmy-flash 0.2s infinite; /* Fast flashing "chika chika" */
+    font-weight: 800; /* Bold for emphasis */
+}
+
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.gallery-img-wrapper {
+    width: 100%;
+    aspect-ratio: 4/3; /* Consistent aspect ratio */
+    overflow: hidden;
+    background-color: #f0f0f0; /* Placeholder color */
+}
+
+.gallery-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-img-wrapper img:hover {
+    transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+.gallery-caption {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    line-height: 1.35; /* Tighten spacing for multi-line captions */
+}
+
+/* =========================================
+   Lightbox Modal
+   ========================================= */
+.lightbox-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2000; /* Above everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: fadeIn 0.3s ease;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    text-align: center;
+}
+
+#lightbox-img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+#lightbox-caption {
+    color: #fff;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-family: var(--font-heading);
+    font-weight: 500;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 2001;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--theme-gallery-accent);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* =========================================
+   Favorites Cloud Styling
+   ========================================= */
+.favorites-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px; /* Space between items */
+}
+
+.fav-tag {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 50px; /* Fully rounded corners */
+    background-color: rgba(243, 156, 18, 0.2); /* Orange with Opacity */
+    color: #000000; /* Solid Black Text */
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: transform 0.2s ease, background-color 0.2s;
+    cursor: default;
 }

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kento Nohara | My Hobby & Favorite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="about.html">Kento's Website</a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active-page">
+                        <a href="javascript:void(0)" class="nav-link toggle-btn">
+                            List <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown">
+                            <li><a href="list.html">My Hobby & Favorite</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section theme-hobby" style="background-image: linear-gradient(rgba(241, 196, 15, 0.1), rgba(241, 196, 15, 0.1));">
+        <div class="hero-content">
+            <h1 class="section-title" style="font-size: clamp(1.8rem, 5vw, 3rem); margin-bottom: 1rem; white-space: nowrap;">My Hobby & Favorite</h1>
+            <p style="font-size: 1.2rem; color: var(--text-muted);">Things that bring me happiness!!</p>
+        </div>
+    </section>
+
+    <div class="doc-layout">
+        
+        <!-- MAIN CONTENT AREA -->
+        <main class="content-area">
+
+             <!-- 01 My Hobby & Favorite -->
+            <section id="hobby-section" class="doc-section theme-hobby">
+                <div class="section-content">
+                    <div class="content-wrapper">
+
+                        <!-- Sub-Section 1: My Hobby -->
+                        <div class="sub-block">
+                            <h3 style="border-bottom: 2px solid var(--theme-hobby-accent); display: inline-block; margin-bottom: 1.5rem;">My Hobby</h3>
+                            
+                            <div class="tab-container">
+                                <!-- Tab Menu -->
+                                <div class="tab-menu">
+                                    <button class="tab-btn active" onclick="openTab(event, 'tab-euphonium')">Euphonium</button>
+                                    <button class="tab-btn" onclick="openTab(event, 'tab-walking')">Taking a Walk</button>
+                                    <button class="tab-btn" onclick="openTab(event, 'tab-starbucks')">Starbucks Reserve Cards</button>
+                                    <button class="tab-btn" onclick="openTab(event, 'tab-gosyuinn')">Goshuin Collection</button>
+                                </div>
+
+                                <!-- Content: Euphonium -->
+                                <div id="tab-euphonium" class="tab-content" style="display: block;">
+                                    <h4>Euphonium</h4>
+                                    <p>I had been played for 6 years, 
+                                    <br>My Euphonium: Yamaha YEP-642II Neo Series Compensating Euphonium Lacquer 
+                                    <br>Mouse Peace: Denis Wick Euphonium SM2 Ultra (Silver) 
+                                    <br>Fav Piece:New World Dances by Martin Elleby, Every music made by Philip Sparke are fire :), 
+                                    <br>Fav Players: Ayaka Sato, Sodai Ogawa!!!</p>
+                                </div>
+
+                                <!-- Content: Walking -->
+                                <div id="tab-walking" class="tab-content">
+                                    <h4>Taking a walk</h4>
+                                    <p>I had walked 8 hours straight one time, Ueno station to Haneda International Airports!
+                                    <br>Talking a walk basically for finding a new Cafe or Restaurant!
+                                    <br>Actually feeling the marketing strategy sometime in city like Lanchester's strategy.</p>
+                                </div>
+
+                                <!-- Content: スタバリザーブ店のコーヒーカード集め -->
+                                <div id="tab-starbucks" class="tab-content">
+                                    <h4>Starbucks Reserve Card Collection</h4>
+                                    <p><em>Currently, I am living in the US and do not have my card holder with me. <br>I will update this section with my collection once I return to Japan!</em></p>
+                                </div>
+
+                                <!-- Content: 御朱印集め -->
+                                <div id="tab-gosyuinn" class="tab-content">
+                                    <h4>Goshuin Collection (Shrine Seals)</h4>
+                                    <p><em>Currently, I am living in the US and do not have my Goshuin-cho with me. <br>I will update this section later.</em></p>
+                                    
+                                    <div style="margin-top: 1.5rem; padding: 10px; background-color: #f9f9f9; border-left: 3px solid #ccc; color: #777; font-size: 0.9rem;">
+                                        <strong>What is Goshuin-cho?</strong><br>
+                                        A <em>Goshuin-cho</em> is a special book used to collect handwritten seals (Goshuin) from Shinto shrines and Buddhist temples in Japan. Each seal is a unique piece of calligraphy serving as a record of one's visit.<br>
+                                        *Note: I collect these purely for artistic appreciation and travel memories. There is absolutely no religious meaning or intent behind this collection.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sub-Section 2: My Favorite -->
+                         <div class="sub-block theme-fav">
+                            <h3 style="color: #000; border-bottom: 2px solid var(--theme-fav-accent); display: inline-block; margin-bottom: 1.5rem;">My Favorite</h3>
+                            
+                            <div class="favorites-cloud">
+                                <div class="favorites-cloud">
+                                    <span class="fav-tag">Udon</span>
+                                    <span class="fav-tag">Coffee</span>
+                                    <span class="fav-tag">Milk Tea</span>
+                                    <span class="fav-tag">Croffle</span>
+                                    <span class="fav-tag">낙곱새 (Nak-gop-se)</span>
+                                    <span class="fav-tag">비빔칼국수 (Bibim Kalguksu)</span>
+                                    <span class="fav-tag">소화가 잘되는 우유 (Lactose-free Milk)</span>
+                                    <span class="fav-tag">TETSU's Mazesoba</span>
+                                    <span class="fav-tag">Vanilla Cream Frappuccino with Citrus Pulp in Starbucks</span>
+                                    <span class="fav-tag">Me Time</span>
+                                    <span class="fav-tag">Straw Tumbler</span>
+                                    <span class="fav-tag">Navy Blue</span>
+                                    <span class="fav-tag">Psychology</span>
+                                    <span class="fav-tag">Physics</span>
+                                    <span class="fav-tag">Heated Bus Stop Benches in Korea</span>
+                                    <span class="fav-tag">Under-seat Heaters on Japanese Trains</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- GLOBAL FOOTER (Formerly Notes) -->
+    <footer id="notes" class="site-footer theme-contact">
+        <div class="footer-content">
+            <h2 class="footer-title">Contact/Notes</h2>
+            
+            <div class="flex-container">
+                <div class="footer-group">
+                    <a href="#" class="download-btn">Download Resume</a>
+
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/kento-nohara-04588b327/"
+                            target="_blank">LinkedIn</a>
+                        <a href="https://github.com/U1401141?tab=repositories" target="_blank">GitHub</a>
+                        <a href="mailto:u1401141@utah.edu">Email</a>
+                    </div>
+                </div>
+
+                <div class="comment-box">
+                    <h4>Personal Message</h4>
+                    <p>"This Website is a living document of my journey!!! I made it with fun :-) Thank you for visiting!"
+                        <br>*Updated on Dec 2025
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
