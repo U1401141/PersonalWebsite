@@ -805,8 +805,8 @@ body {
 /* Tablet/Mobile Responsive: Keep 4 columns essentially standard */
 @media (max-width: 1024px) {
     .gallery-grid {
-        /* User requested 4 columns even on phone */
-        grid-template-columns: repeat(4, 1fr);
+        /* User requested 3 columns to prevent overflow */
+        grid-template-columns: repeat(3, 1fr);
         gap: 0.5rem; /* Smaller gap for mobile */
     }
 }
